@@ -9,12 +9,18 @@ import {
   View,
 } from 'react-native';
 import * as yup from 'yup';
+
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {FormikHelpers} from 'formik';
+
 import Form from '../../components/form';
 import AuthInputField from '../../components/form/AuthInputField';
-import AppLink from '../../ui/AppLink';
-import SubmitBtn from '../../components/form/SubmitBtn';
-import PasswordVisibilityIcon from '../../ui/PasswordVisibilityIcon';
+import client from '../../api/client';
 import AuthFormContainer from '../../components/AuthFormContainer';
+import PasswordVisibilityIcon from '../../ui/PasswordVisibilityIcon';
+import SubmitBtn from '../../components/form/SubmitBtn';
+import AppLink from '../../ui/AppLink';
+import { AuthStackParamList } from '../../@types/navigation';
 
 const signupSchema = yup.object({
   name: yup
@@ -40,6 +46,12 @@ const signupSchema = yup.object({
 
 interface Props {}
 
+interface NewUser {
+  name: string;
+  email: string;
+  password: string;
+}
+
 const initialValues = {
   name: '',
   email: '',
@@ -48,16 +60,33 @@ const initialValues = {
 
 const SignUp: FC<Props> = props => {
   const [secureEntry, setSecureEntry] = useState(true);
+  const navigation = useNavigation<NavigationProp<AuthStackParamList>>();
 
   const togglePasswordView = () => {
     setSecureEntry(!secureEntry);
   };
 
+  const handleSubmit = async (
+    values: NewUser,
+    actions: FormikHelpers<NewUser>,
+  ) => {
+    actions.setSubmitting(true);
+    try {
+      // we want to send these information to our api
+      const {data} = await client.post('/auth/create', {
+        ...values,
+      });
+
+      navigation.navigate('Verification', {userInfo: data.user});
+    } catch (error) {
+      console.log('Sign up error: ', error);
+    }
+    actions.setSubmitting(false);
+  };
+
   return (
     <Form
-      onSubmit={values => {
-        console.log(values);
-      }}
+      onSubmit={handleSubmit}
       initialValues={initialValues}
       validationSchema={signupSchema}>
       <AuthFormContainer
@@ -91,8 +120,18 @@ const SignUp: FC<Props> = props => {
           <SubmitBtn title="Sign up" />
 
           <View style={styles.linkContainer}>
-            <AppLink title="I Lost My Password" />
-            <AppLink title="Sign in" />
+            <AppLink
+              title="I Lost My Password"
+              onPress={() => {
+                navigation.navigate('LostPassword');
+              }}
+            />
+            <AppLink
+              title="Sign in"
+              onPress={() => {
+                navigation.navigate('SignIn');
+              }}
+            />
           </View>
         </View>
       </AuthFormContainer>

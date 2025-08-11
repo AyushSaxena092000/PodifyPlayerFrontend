@@ -1,8 +1,13 @@
-import SignIn from "./src/views/auth/SignIn";
+import {NavigationContainer} from '@react-navigation/native';
+import AuthNavigator from './src/navigation/AuthNavigator';
 
 
 const App = () => {
-  return <SignIn />;
+  return (
+    <NavigationContainer>
+      <AuthNavigator />
+    </NavigationContainer>
+  );
 };
 
 export default App;
