@@ -1,8 +1,8 @@
 
-import colors from '../utils/colors';
 import {FC, ReactNode} from 'react';
 import {View, StyleSheet, Image, Text} from 'react-native';
 import CircleUi from '../ui/CircleUi';
+import colors from '../utils/colors';
 
 interface Props {
   children: ReactNode;

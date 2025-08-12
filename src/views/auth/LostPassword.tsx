@@ -7,12 +7,12 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 import {FormikHelpers} from 'formik';
 import client from '../../api/client';
-import AppLink from '../../ui/AppLink';
-import SubmitBtn from '../../components/form/SubmitBtn';
 import { AuthStackParamList } from '../../@types/navigation';
 import AuthFormContainer from '../../components/AuthFormContainer';
-import AuthInputField from '../../components/form/AuthInputField';
+import SubmitBtn from '../../components/form/SubmitBtn';
+import AppLink from '../../ui/AppLink';
 import Form from '../../components/form';
+import AuthInputField from '../../components/form/AuthInputField';
 
 
 const lostPasswordSchema = yup.object({

@@ -1,4 +1,3 @@
-
 import {FC, useState} from 'react';
 import {
   Button,
@@ -9,18 +8,16 @@ import {
   View,
 } from 'react-native';
 import * as yup from 'yup';
-
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {FormikHelpers} from 'formik';
-
 import Form from '../../components/form';
 import AuthInputField from '../../components/form/AuthInputField';
-import client from '../../api/client';
-import AuthFormContainer from '../../components/AuthFormContainer';
+import AppLink from '../../ui/AppLink';
 import PasswordVisibilityIcon from '../../ui/PasswordVisibilityIcon';
 import SubmitBtn from '../../components/form/SubmitBtn';
-import AppLink from '../../ui/AppLink';
+import client from '../../api/client';
 import { AuthStackParamList } from '../../@types/navigation';
+import AuthFormContainer from '../../components/AuthFormContainer';
 
 const signupSchema = yup.object({
   name: yup

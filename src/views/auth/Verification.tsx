@@ -1,17 +1,15 @@
 import {FC, useEffect, useRef, useState} from 'react';
 import {Keyboard, StyleSheet, Text, TextInput, View} from 'react-native';
-
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import colors from '../../utils/colors';
 import { AuthStackParamList } from '../../@types/navigation';
 import client from '../../api/client';
+import colors from '../../utils/colors';
 import AuthFormContainer from '../../components/AuthFormContainer';
 import OTPField from '../../ui/OTPField';
 import AppButton from '../../ui/AppButton';
 import AppLink from '../../ui/AppLink';
-
+;
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'Verification'>;
 

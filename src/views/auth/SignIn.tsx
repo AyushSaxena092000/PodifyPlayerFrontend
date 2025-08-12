@@ -3,17 +3,22 @@ import {FC, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import * as yup from 'yup';
 
+
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 import {FormikHelpers} from 'formik';
+
+import {useDispatch} from 'react-redux';
+import { Keys, saveToAsyncStorage } from '../../utils/asyncStorage';
+import { updateLoggedInState, updateProfile } from '../../store/auth';
 import client from '../../api/client';
+import { AuthStackParamList } from '../../@types/navigation';
 import AuthFormContainer from '../../components/AuthFormContainer';
 import AppLink from '../../ui/AppLink';
-import { AuthStackParamList } from '../../@types/navigation';
-import SubmitBtn from '../../components/form/SubmitBtn';
 import PasswordVisibilityIcon from '../../ui/PasswordVisibilityIcon';
-import AuthInputField from '../../components/form/AuthInputField';
+import SubmitBtn from '../../components/form/SubmitBtn';
 import Form from '../../components/form';
+import AuthInputField from '../../components/form/AuthInputField';
 
 
 const signinSchema = yup.object({
@@ -44,6 +49,7 @@ const initialValues = {
 const SignIn: FC<Props> = props => {
   const [secureEntry, setSecureEntry] = useState(true);
   const navigation = useNavigation<NavigationProp<AuthStackParamList>>();
+  const dispatch = useDispatch();
 
   const togglePasswordView = () => {
     setSecureEntry(!secureEntry);
@@ -60,7 +66,10 @@ const SignIn: FC<Props> = props => {
         ...values,
       });
 
-      console.log(data);
+      await saveToAsyncStorage(Keys.AUTH_TOKEN, data.token);
+
+      dispatch(updateProfile(data.profile));
+      dispatch(updateLoggedInState(true));
     } catch (error) {
       console.log('Sign in error: ', error);
     }
