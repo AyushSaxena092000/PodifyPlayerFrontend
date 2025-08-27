@@ -12,12 +12,12 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {FormikHelpers} from 'formik';
 import Form from '../../components/form';
 import AuthInputField from '../../components/form/AuthInputField';
+import { AuthStackParamList } from '../../@types/navigation';
+import client from '../../api/client';
+import AuthFormContainer from '../../components/AuthFormContainer';
 import AppLink from '../../ui/AppLink';
 import PasswordVisibilityIcon from '../../ui/PasswordVisibilityIcon';
 import SubmitBtn from '../../components/form/SubmitBtn';
-import client from '../../api/client';
-import { AuthStackParamList } from '../../@types/navigation';
-import AuthFormContainer from '../../components/AuthFormContainer';
 
 const signupSchema = yup.object({
   name: yup

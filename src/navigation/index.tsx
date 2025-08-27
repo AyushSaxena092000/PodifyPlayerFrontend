@@ -2,13 +2,17 @@ import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {FC, useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-
+import client from "../api/client";
+import {
+  getAuthState,
+  updateBusyState,
+  updateLoggedInState,
+  updateProfile,
+} from "../store/auth";
 import AuthNavigator from './AuthNavigator';
 import TabNavigator from './TabNavigator';
-import Loader from '../ui/Loader';
-import client from '../api/client';
 import colors from '../utils/colors';
-import { getAuthState, updateBusyState, updateLoggedInState, updateProfile } from '../store/auth';
+import Loader from '../ui/Loader';
 import { getFromAsyncStorage, Keys } from '../utils/asyncStorage';
 
 interface Props {}

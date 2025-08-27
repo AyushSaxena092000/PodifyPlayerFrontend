@@ -1,12 +1,11 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {useSelector} from 'react-redux';
+import { getAuthState } from '../store/auth';
 import { AuthStackParamList } from '../@types/navigation';
-import { useSelector } from 'react-redux';
-
 import SignIn from '../views/auth/SignIn';
 import SignUp from '../views/auth/SignUp';
 import LostPassword from '../views/auth/LostPassword';
 import Verification from '../views/auth/Verification';
-import { getAuthState } from '../store/auth';
 
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();

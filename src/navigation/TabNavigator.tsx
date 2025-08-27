@@ -1,5 +1,4 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialComIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from '../utils/colors';

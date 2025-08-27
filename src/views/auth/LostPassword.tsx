@@ -1,8 +1,6 @@
-
 import {FC} from 'react';
 import {StyleSheet, View} from 'react-native';
 import * as yup from 'yup';
-
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 import {FormikHelpers} from 'formik';

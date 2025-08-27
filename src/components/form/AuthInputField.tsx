@@ -1,5 +1,3 @@
-
-
 import {useFormikContext} from 'formik';
 import {FC, ReactNode, useEffect} from 'react';
 import {
@@ -18,8 +16,8 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import colors from '../../utils/colors';
 import AppInput from '../../ui/AppInput';
+import colors from '../../utils/colors';
 
 interface Props {
   name: string;

@@ -2,21 +2,17 @@
 import {FC, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import * as yup from 'yup';
-
-
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-
 import {FormikHelpers} from 'formik';
-
 import {useDispatch} from 'react-redux';
+import client from '../../api/client';
 import { Keys, saveToAsyncStorage } from '../../utils/asyncStorage';
 import { updateLoggedInState, updateProfile } from '../../store/auth';
-import client from '../../api/client';
 import { AuthStackParamList } from '../../@types/navigation';
-import AuthFormContainer from '../../components/AuthFormContainer';
-import AppLink from '../../ui/AppLink';
 import PasswordVisibilityIcon from '../../ui/PasswordVisibilityIcon';
 import SubmitBtn from '../../components/form/SubmitBtn';
+import AppLink from '../../ui/AppLink';
+import AuthFormContainer from '../../components/AuthFormContainer';
 import Form from '../../components/form';
 import AuthInputField from '../../components/form/AuthInputField';
 
